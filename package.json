@@ -15,6 +15,7 @@
     "@nx/webpack": "23.0.1",
     "@swc/helpers": "~0.5.18",
     "@types/node": "^22.0.0",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
     "nx": "23.0.1",
@@ -28,10 +29,13 @@
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
+    "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
     "@nestjs/swagger": "^11.4.5",
     "axios": "^1.6.0",
+    "drizzle-orm": "^0.45.2",
+    "mysql2": "^3.22.6",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.0"
   }
