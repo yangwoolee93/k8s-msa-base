@@ -1,10 +1,12 @@
 import { Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { bodyParser: false });
+  const config = app.get(ConfigService);
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('api-gateway')
@@ -14,7 +16,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('docs', app, document);
 
-  const port = process.env.API_GATEWAY_PORT || 4000;
+  const port = config.get<string>('API_GATEWAY_PORT') || 4000;
   await app.listen(port);
   Logger.log(`Application is running on: http://localhost:${port}`);
   Logger.log(`Swagger docs: http://localhost:${port}/docs`);
